@@ -5,16 +5,16 @@
   
 
   
-  <title>Hello World | Hexo</title>
+  <title>JVM学习 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="JVM学习前奏篇javac JDK &amp;gt; JRE &amp;gt; JVM  类加载机制 类装载  先找到类文件所在的位置 类加载器 ClassLoader 双亲委派机制   将类文件的信息交给JVM  –&amp;gt; 类文件字节码流静态存储结构 –&amp;gt;【方法区】 类文件所对应的对象Class【堆】   链接  验证  保证被加载的类的正确性   准备  要为类的静态变量分配内存空间，并将其的值初始化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;27&#x2F;hello-world&#x2F;index.html">
+<meta property="og:title" content="JVM学习">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;09&#x2F;JVM%E5%AD%A6%E4%B9%A0&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="JVM学习前奏篇javac JDK &amp;gt; JRE &amp;gt; JVM  类加载机制 类装载  先找到类文件所在的位置 类加载器 ClassLoader 双亲委派机制   将类文件的信息交给JVM  –&amp;gt; 类文件字节码流静态存储结构 –&amp;gt;【方法区】 类文件所对应的对象Class【堆】   链接  验证  保证被加载的类的正确性   准备  要为类的静态变量分配内存空间，并将其的值初始化">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-27T09:54:45.009Z">
+<meta property="og:updated_time" content="2019-12-09T09:24:56.980Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -62,10 +62,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-JVM学习" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/11/27/hello-world/" class="article-date">
-  <time datetime="2019-11-27T09:54:45.009Z" itemprop="datePublished">2019-11-27</time>
+    <a href="/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2019-12-09T08:52:15.000Z" itemprop="datePublished">2019-12-09</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      JVM学习
     </h1>
   
 
@@ -84,24 +84,56 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span></pre></td></tr></table></figure>
+        <h1 id="JVM学习"><a href="#JVM学习" class="headerlink" title="JVM学习"></a>JVM学习</h1><h2 id="前奏篇"><a href="#前奏篇" class="headerlink" title="前奏篇"></a>前奏篇</h2><h3 id="javac"><a href="#javac" class="headerlink" title="javac"></a>javac</h3><ul>
+<li>JDK &gt; JRE &gt; JVM</li>
+</ul>
+<h3 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h3><ol>
+<li><p>类装载</p>
+<ul>
+<li>先找到类文件所在的位置<ul>
+<li>类加载器 ClassLoader</li>
+<li>双亲委派机制</li>
+</ul>
+</li>
+<li>将类文件的信息交给JVM  –&gt; 类文件字节码流静态存储结构 –&gt;【方法区】</li>
+<li>类文件所对应的对象Class【堆】</li>
+</ul>
+</li>
+<li><p>链接</p>
+<ul>
+<li><p>验证</p>
+<ul>
+<li>保证被加载的类的正确性</li>
+</ul>
+</li>
+<li><p>准备</p>
+<ul>
+<li><p>要为类的静态变量分配内存空间，并将其的值初始化为默认值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> a = <span class="number">10</span>;</span></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo server</span></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo generate</span></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>此时a = 0</p>
+</li>
+</ul>
+</li>
+<li><p>解析</p>
+<ul>
+<li>将类中的符号引用转换为直接引用</li>
+<li>地址：String str = 地址是什么（真实的内存地址，可以被调用）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>初始化</p>
+<ul>
+<li>为静态变量赋真正的值，此时a = 10</li>
+</ul>
+</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/27/hello-world/" data-id="ck3y8csd90002kzz84ka17dxf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/" data-id="ck3y8csd70001kzz8a9rv7pno" class="article-share-link">Share</a>
       
       
     </footer>
@@ -110,15 +142,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/11/27/Hello-World-By-Real/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Hello World By Real
-        
-      </div>
-    </a>
   
+    <a href="/2019/12/09/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">工厂模式</div>
+    </a>
   
 </nav>
 

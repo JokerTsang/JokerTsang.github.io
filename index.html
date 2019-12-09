@@ -61,6 +61,87 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JVM学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2019-12-09T08:52:15.000Z" itemprop="datePublished">2019-12-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/">JVM学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JVM学习"><a href="#JVM学习" class="headerlink" title="JVM学习"></a>JVM学习</h1><h2 id="前奏篇"><a href="#前奏篇" class="headerlink" title="前奏篇"></a>前奏篇</h2><h3 id="javac"><a href="#javac" class="headerlink" title="javac"></a>javac</h3><ul>
+<li>JDK &gt; JRE &gt; JVM</li>
+</ul>
+<h3 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h3><ol>
+<li><p>类装载</p>
+<ul>
+<li>先找到类文件所在的位置<ul>
+<li>类加载器 ClassLoader</li>
+<li>双亲委派机制</li>
+</ul>
+</li>
+<li>将类文件的信息交给JVM  –&gt; 类文件字节码流静态存储结构 –&gt;【方法区】</li>
+<li>类文件所对应的对象Class【堆】</li>
+</ul>
+</li>
+<li><p>链接</p>
+<ul>
+<li><p>验证</p>
+<ul>
+<li>保证被加载的类的正确性</li>
+</ul>
+</li>
+<li><p>准备</p>
+<ul>
+<li><p>要为类的静态变量分配内存空间，并将其的值初始化为默认值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> a = <span class="number">10</span>;</span></pre></td></tr></table></figure>
+
+<p>此时a = 0</p>
+</li>
+</ul>
+</li>
+<li><p>解析</p>
+<ul>
+<li>将类中的符号引用转换为直接引用</li>
+<li>地址：String str = 地址是什么（真实的内存地址，可以被调用）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>初始化</p>
+<ul>
+<li>为静态变量赋真正的值，此时a = 10</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/" data-id="ck3y8csd70001kzz8a9rv7pno" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-工厂模式" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/09/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="article-date">
@@ -87,7 +168,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/09/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" data-id="ck3y38xd200022xk72imgdm74" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/09/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" data-id="ck3y8csda0003kzz86avk45th" class="article-share-link">Share</a>
       
       
     </footer>
@@ -127,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/27/Hello-World-By-Real/" data-id="ck3y38xcj00002xk795d8epty" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/27/Hello-World-By-Real/" data-id="ck3y8csd20000kzz8a55m3z9x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -176,7 +257,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/27/hello-world/" data-id="ck3y38xco00012xk74mduextj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/27/hello-world/" data-id="ck3y8csd90002kzz84ka17dxf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -215,6 +296,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/">JVM学习</a>
+          </li>
         
           <li>
             <a href="/2019/12/09/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">工厂模式</a>
