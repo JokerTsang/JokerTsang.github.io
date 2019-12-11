@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="JVM学习前奏篇javac JDK &amp;gt; JRE &amp;gt; JVM  类加载机制 类装载  先找到类文件所在的位置 类加载器 ClassLoader 双亲委派机制   将类文件的信息交给JVM  –&amp;gt; 类文件字节码流静态存储结构 –&amp;gt;【方法区】 类文件所对应的对象Class【堆】   链接  验证  保证被加载的类的正确性   准备  要为类的静态变量分配内存空间，并将其的值初始化">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-09T09:24:56.980Z">
+<meta property="og:updated_time" content="2019-12-11T11:16:48.134Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -117,7 +117,7 @@
 </li>
 <li><p>解析</p>
 <ul>
-<li>将类中的符号引用转换为直接引用</li>
+<li>将类中的符号引用（只是一个代称，没有实际内容）转换为直接引用</li>
 <li>地址：String str = 地址是什么（真实的内存地址，可以被调用）</li>
 </ul>
 </li>
@@ -129,11 +129,45 @@
 </ul>
 </li>
 </ol>
+<h2 id="JVM运行时数据区"><a href="#JVM运行时数据区" class="headerlink" title="JVM运行时数据区"></a>JVM运行时数据区</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ol>
+<li><p>每一个运行时常量池是从方法区里面分配的</p>
+</li>
+<li><p>【栈，先进后出，后进先出】</p>
+<blockquote>
+<ul>
+<li>外层方法先入栈，被调用的方法后入栈，调用时就可以先调用内层方法</li>
+</ul>
+</blockquote>
+</li>
+<li><p>JAVA虚拟机栈，存放java方法</p>
+</li>
+<li><p>本地方法战，存放C语言的栈</p>
+</li>
+<li><p>程序计数器，记录每个栈的执行位置</p>
+</li>
+</ol>
+<h3 id="详聊运行时数据区"><a href="#详聊运行时数据区" class="headerlink" title="详聊运行时数据区"></a>详聊运行时数据区</h3><h4 id="01-方法区（Method-Area"><a href="#01-方法区（Method-Area" class="headerlink" title="01 方法区（Method Area)"></a>01 方法区（Method Area)</h4><ol>
+<li>每个JVM虚拟机只有一个方法区，线程共享【线程非安全】，生命周期是跟虚拟机一样的</li>
+<li>存储类信息、常量、静态变量和即时编译器编译之后的代码</li>
+<li>方法区逻辑上属于堆的一部分，但垃圾回收不太会讨论方法区的垃圾回收，如果内存空间无法再支持方法区的运行，就会报错（OOM）</li>
+</ol>
+<h4 id="02-堆-（Heap）"><a href="#02-堆-（Heap）" class="headerlink" title="02 堆 （Heap）"></a>02 堆 （Heap）</h4><ol>
+<li>每个JVM虚拟机只有一个堆，所有的线程共享【线程非安全】，生命周期跟虚拟机一样</li>
+<li>存储类的对象或者数组</li>
+<li>跟方法区一样，当内存空间无法再支持堆的运行，就会报错（OOM）</li>
+</ol>
+<h4 id="03-Java虚拟机栈"><a href="#03-Java虚拟机栈" class="headerlink" title="03 Java虚拟机栈"></a>03 Java虚拟机栈</h4><ol>
+<li>存放java方法的调用栈</li>
+<li>如果栈的深度不够用，就会报stackoverflowerror</li>
+<li>每一个方法被调用，就代表着一个栈帧</li>
+</ol>
+<h4 id="04-本地方法栈"><a href="#04-本地方法栈" class="headerlink" title="04 本地方法栈"></a>04 本地方法栈</h4><p>调用C方法，不赘述</p>
+<h4 id="05-程序计数器"><a href="#05-程序计数器" class="headerlink" title="05 程序计数器"></a>05 程序计数器</h4><p>不深入探讨</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/" data-id="ck3y8g7l00001p3k725vbdnfj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/" data-id="ck4178bx10000paz6bqj12j71" class="article-share-link">Share</a>
       
       
     </footer>
