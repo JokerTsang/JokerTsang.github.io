@@ -7,14 +7,14 @@
   
   <title>JVM学习 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JVM学习前奏篇javac JDK &amp;gt; JRE &amp;gt; JVM  类加载机制 类装载  先找到类文件所在的位置 类加载器 ClassLoader 双亲委派机制   将类文件的信息交给JVM  –&amp;gt; 类文件字节码流静态存储结构 –&amp;gt;【方法区】 类文件所对应的对象Class【堆】   链接  验证  保证被加载的类的正确性   准备  要为类的静态变量分配内存空间，并将其的值初始化">
+  <meta name="description" content="JVM学习-前奏篇javac JDK &amp;gt; JRE &amp;gt; JVM  类加载机制 类装载  先找到类文件所在的位置 类加载器 ClassLoader 双亲委派机制   将类文件的信息交给JVM  –&amp;gt; 类文件字节码流静态存储结构 –&amp;gt;【方法区】 类文件所对应的对象Class【堆】   链接  验证  保证被加载的类的正确性   准备  要为类的静态变量分配内存空间，并将其的值初始">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM学习">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;09&#x2F;JVM%E5%AD%A6%E4%B9%A0&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="JVM学习前奏篇javac JDK &amp;gt; JRE &amp;gt; JVM  类加载机制 类装载  先找到类文件所在的位置 类加载器 ClassLoader 双亲委派机制   将类文件的信息交给JVM  –&amp;gt; 类文件字节码流静态存储结构 –&amp;gt;【方法区】 类文件所对应的对象Class【堆】   链接  验证  保证被加载的类的正确性   准备  要为类的静态变量分配内存空间，并将其的值初始化">
+<meta property="og:description" content="JVM学习-前奏篇javac JDK &amp;gt; JRE &amp;gt; JVM  类加载机制 类装载  先找到类文件所在的位置 类加载器 ClassLoader 双亲委派机制   将类文件的信息交给JVM  –&amp;gt; 类文件字节码流静态存储结构 –&amp;gt;【方法区】 类文件所对应的对象Class【堆】   链接  验证  保证被加载的类的正确性   准备  要为类的静态变量分配内存空间，并将其的值初始">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-11T11:16:48.134Z">
+<meta property="og:updated_time" content="2019-12-11T11:32:27.726Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -84,7 +84,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="JVM学习"><a href="#JVM学习" class="headerlink" title="JVM学习"></a>JVM学习</h1><h2 id="前奏篇"><a href="#前奏篇" class="headerlink" title="前奏篇"></a>前奏篇</h2><h3 id="javac"><a href="#javac" class="headerlink" title="javac"></a>javac</h3><ul>
+        <h1 id="JVM学习-前奏篇"><a href="#JVM学习-前奏篇" class="headerlink" title="JVM学习-前奏篇"></a>JVM学习-前奏篇</h1><h3 id="javac"><a href="#javac" class="headerlink" title="javac"></a>javac</h3><ul>
 <li>JDK &gt; JRE &gt; JVM</li>
 </ul>
 <h3 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h3><ol>
@@ -147,9 +147,18 @@
 </li>
 </ol>
 <h3 id="详聊运行时数据区"><a href="#详聊运行时数据区" class="headerlink" title="详聊运行时数据区"></a>详聊运行时数据区</h3><h4 id="01-方法区（Method-Area"><a href="#01-方法区（Method-Area" class="headerlink" title="01 方法区（Method Area)"></a>01 方法区（Method Area)</h4><ol>
-<li>每个JVM虚拟机只有一个方法区，线程共享【线程非安全】，生命周期是跟虚拟机一样的</li>
-<li>存储类信息、常量、静态变量和即时编译器编译之后的代码</li>
-<li>方法区逻辑上属于堆的一部分，但垃圾回收不太会讨论方法区的垃圾回收，如果内存空间无法再支持方法区的运行，就会报错（OOM）</li>
+<li><p>每个JVM虚拟机只有一个方法区，线程共享【线程非安全】，生命周期是跟虚拟机一样的</p>
+</li>
+<li><p>存储类信息、常量、静态变量和即时编译器编译之后的代码</p>
+</li>
+<li><p>方法区逻辑上属于堆的一部分，但垃圾回收不太会讨论方法区的垃圾回收，如果内存空间无法再支持方法区的运行，就会报错（OOM）</p>
+</li>
+<li><p>1.7和1.8的区别</p>
+<blockquote>
+<p>JDK1.7：PermSpace    —-&gt;  永久代</p>
+<p>JDK1.8：MetaSpace    —-&gt;  元空间</p>
+</blockquote>
+</li>
 </ol>
 <h4 id="02-堆-（Heap）"><a href="#02-堆-（Heap）" class="headerlink" title="02 堆 （Heap）"></a>02 堆 （Heap）</h4><ol>
 <li>每个JVM虚拟机只有一个堆，所有的线程共享【线程非安全】，生命周期跟虚拟机一样</li>
@@ -163,11 +172,14 @@
 </ol>
 <h4 id="04-本地方法栈"><a href="#04-本地方法栈" class="headerlink" title="04 本地方法栈"></a>04 本地方法栈</h4><p>调用C方法，不赘述</p>
 <h4 id="05-程序计数器"><a href="#05-程序计数器" class="headerlink" title="05 程序计数器"></a>05 程序计数器</h4><p>不深入探讨</p>
+<p>Java虚拟机栈，执行方法的时候，到底经历什么？ Javap 反编译 —–&gt; 字节码指令，对应java虚拟机栈执行过程</p>
+<p>方法对应的栈帧：包含的内容</p>
+<p>既然有了运行时数据区【代码运行时的状态JVM】，那么内存模型【JMM，JAVA，线程安全性】又是什么？</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/" data-id="ck417aqkw0001r8k790g53itz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/" data-id="ck417sm6v0002xpk722sgfafg" class="article-share-link">Share</a>
       
       
     </footer>
