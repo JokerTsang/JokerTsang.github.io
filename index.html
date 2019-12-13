@@ -93,9 +93,12 @@
 <li>方法返回地址</li>
 </ol>
 <h3 id="设计内存分布"><a href="#设计内存分布" class="headerlink" title="设计内存分布"></a>设计内存分布</h3><ul>
-<li>前提：大多数对象都是“朝生夕死”，生命周期比较短</li>
-<li>年龄：一次垃圾回收，岁数加1，默认15</li>
-<li>老年代：<ul>
+<li><p>前提：大多数对象都是“朝生夕死”，生命周期比较短</p>
+</li>
+<li><p>年龄：一次垃圾回收，岁数加1，默认15</p>
+</li>
+<li><p>老年代：</p>
+<ul>
 <li><ol>
 <li>对象大小特别大（超过新生代的大小）</li>
 <li>年龄超过15</li>
@@ -103,19 +106,57 @@
 </li>
 </ul>
 </li>
-<li>新生代<ul>
+<li><p>新生代</p>
+<ul>
 <li>Eden 伊甸园区，优先分配</li>
 <li>Surviror：幸存区，分成s0和s1</li>
 <li>eden区相对连续</li>
 <li>s1和s0空间不够，找老年代借空间，担保机制</li>
 </ul>
 </li>
+<li><p>Old，Young【Eden、S0[From]、S0[To]】</p>
+<ul>
+<li>Eden：S0：S1=8:1:1 因为新创建的对象基本上都是“朝生夕死”</li>
+<li>Young GC 【包含了Eden，S区】：Minor GC</li>
+<li>Old GC：Major GC，Major GC通常会伴随着MinorGC，也就意味着会触发Full GC</li>
+<li>Young+Old：Full GC</li>
+<li>由于Full GC会导致stop the world【STW】<ul>
+<li>要尽量减少GC频率</li>
+<li>如果做不到，尽可能减少Full GC的频率【允许一定范围的Minor GC】</li>
 </ul>
+</li>
+<li>S0和S1一定会有一块是空的【允许合理的浪费】</li>
+<li>每一次GC，对象的分代年龄+1</li>
+</ul>
+</li>
+</ul>
+<h3 id="栈的深度设置"><a href="#栈的深度设置" class="headerlink" title="栈的深度设置"></a>栈的深度设置</h3><ul>
+<li>栈越大，系统的线程数越小，影响线程创建</li>
+<li>栈越小，越容易栈溢出【stackoverflow】</li>
+<li>3000-5000</li>
+<li>JDK1.5后，默认大小为1M</li>
+</ul>
+<h3 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h3><ol>
+<li>确定什么样的对象是垃圾？<ul>
+<li>引用计数【循环引用会导致问题】</li>
+<li>可达性分析【GC root，由它出发，某个对象是否可达】<ul>
+<li>GC root 在Java 进程中要长时间存在</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>该如何回收？【回收算法】</li>
+<li>垃圾收集器<ol>
+<li>优势和劣势，该如何选型</li>
+</ol>
+</li>
+<li>学会查看垃圾回收的日志文件</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/11/JVM%E5%AD%A6%E4%B9%A0-%E8%BF%9B%E8%A1%8C%E7%AF%87/" data-id="ck43iycwa000074z63j8oasib" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/11/JVM%E5%AD%A6%E4%B9%A0-%E8%BF%9B%E8%A1%8C%E7%AF%87/" data-id="ck43kr1dg0001y2z60ub233to" class="article-share-link">Share</a>
       
       
     </footer>
@@ -242,7 +283,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/" data-id="ck43iycwk000274z62ucrc5t0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/" data-id="ck43kr1di0002y2z6dy5vbo35" class="article-share-link">Share</a>
       
       
     </footer>
@@ -278,7 +319,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/09/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" data-id="ck43iycwn000474z6bvakbk2a" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/09/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" data-id="ck43kr1dl0004y2z6gkhz6wzv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -318,7 +359,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/27/Hello-World-By-Real/" data-id="ck43iycwh000174z6btu4hlgu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/27/Hello-World-By-Real/" data-id="ck43kr1db0000y2z6bk37173v" class="article-share-link">Share</a>
       
       
     </footer>
@@ -367,7 +408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/27/hello-world/" data-id="ck43iycwm000374z6b0440di5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/27/hello-world/" data-id="ck43kr1dk0003y2z6525zchul" class="article-share-link">Share</a>
       
       
     </footer>
