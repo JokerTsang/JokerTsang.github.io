@@ -61,6 +61,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JVM学习-进行篇" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/11/JVM%E5%AD%A6%E4%B9%A0-%E8%BF%9B%E8%A1%8C%E7%AF%87/" class="article-date">
+  <time datetime="2019-12-11T12:08:12.000Z" itemprop="datePublished">2019-12-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/11/JVM%E5%AD%A6%E4%B9%A0-%E8%BF%9B%E8%A1%8C%E7%AF%87/">JVM学习-进行篇</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="栈帧"><a href="#栈帧" class="headerlink" title="栈帧"></a>栈帧</h3><ol>
+<li>局部变量表<ul>
+<li>存放局部变量</li>
+</ul>
+</li>
+<li>操作数栈</li>
+<li>动态链接</li>
+<li>方法返回地址</li>
+</ol>
+<h3 id="设计内存分布"><a href="#设计内存分布" class="headerlink" title="设计内存分布"></a>设计内存分布</h3><ul>
+<li>前提：大多数对象都是“朝生夕死”，生命周期比较短</li>
+<li>年龄：一次垃圾回收，岁数加1，默认15</li>
+<li>老年代：<ul>
+<li><ol>
+<li>对象大小特别大（超过新生代的大小）</li>
+<li>年龄超过15</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>新生代<ul>
+<li>Eden 伊甸园区，优先分配</li>
+<li>Surviror：幸存区，分成s0和s1</li>
+<li>eden区相对连续</li>
+<li>s1和s0空间不够，找老年代借空间，担保机制</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/12/11/JVM%E5%AD%A6%E4%B9%A0-%E8%BF%9B%E8%A1%8C%E7%AF%87/" data-id="ck43iycwa000074z63j8oasib" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JVM学习" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/" class="article-date">
@@ -178,7 +242,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/" data-id="ck417upp60001zdk7c02t471c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/" data-id="ck43iycwk000274z62ucrc5t0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -214,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/09/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" data-id="ck417upp80002zdk7ba5a44f7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/09/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" data-id="ck43iycwn000474z6bvakbk2a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -254,7 +318,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/27/Hello-World-By-Real/" data-id="ck417upp10000zdk76nozg0a9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/27/Hello-World-By-Real/" data-id="ck43iycwh000174z6btu4hlgu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -303,7 +367,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/27/hello-world/" data-id="ck417uppa0003zdk7h8atetlq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/27/hello-world/" data-id="ck43iycwm000374z6b0440di5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -342,6 +406,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/12/11/JVM%E5%AD%A6%E4%B9%A0-%E8%BF%9B%E8%A1%8C%E7%AF%87/">JVM学习-进行篇</a>
+          </li>
         
           <li>
             <a href="/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/">JVM学习</a>
