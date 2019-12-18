@@ -61,6 +61,115 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JVM学习-升华篇" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/18/JVM%E5%AD%A6%E4%B9%A0-%E5%8D%87%E5%8D%8E%E7%AF%87/" class="article-date">
+  <time datetime="2019-12-18T07:34:16.000Z" itemprop="datePublished">2019-12-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/18/JVM%E5%AD%A6%E4%B9%A0-%E5%8D%87%E5%8D%8E%E7%AF%87/">JVM学习-升华篇</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="GC-root"><a href="#GC-root" class="headerlink" title="GC root"></a>GC root</h3><ul>
+<li>虚拟机栈中的本地变量</li>
+<li>static成员</li>
+<li>常量引用</li>
+<li>本地方法栈【Thread C】中的变量</li>
+<li>类加载器</li>
+<li>Thread类</li>
+</ul>
+<h3 id="回收算法"><a href="#回收算法" class="headerlink" title="回收算法"></a>回收算法</h3><ol>
+<li>标记和清除<ul>
+<li>标记</li>
+<li>清除</li>
+<li>问题：<ul>
+<li>空间碎片，内存不连续</li>
+<li>标记和清除都比较耗时，效率较低</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>复制算法<ul>
+<li>缺点：<ul>
+<li>空间浪费</li>
+</ul>
+</li>
+<li>优势：<ul>
+<li>内存连续</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>标记和整理</li>
+</ol>
+<h3 id="算法的落地-—-gt-垃圾回收器"><a href="#算法的落地-—-gt-垃圾回收器" class="headerlink" title="算法的落地 —&gt; 垃圾回收器"></a>算法的落地 —&gt; 垃圾回收器</h3><h4 id="新生代：复制算法——适用于少量对象存活的场景【新生代是朝生夕死】"><a href="#新生代：复制算法——适用于少量对象存活的场景【新生代是朝生夕死】" class="headerlink" title="新生代：复制算法——适用于少量对象存活的场景【新生代是朝生夕死】"></a>新生代：复制算法——适用于少量对象存活的场景【新生代是朝生夕死】</h4><h4 id="老年代：标记-清除-整理"><a href="#老年代：标记-清除-整理" class="headerlink" title="老年代：标记-清除/整理"></a>老年代：标记-清除/整理</h4><ol>
+<li><p><strong>CMS</strong>：concurrent mark sweep 并发类的垃圾收集器【用户线程和垃圾回收线程可以同时进行】</p>
+<blockquote>
+<p>初始标记</p>
+<p>并发标记</p>
+<p>重新标记</p>
+<p>并发清理</p>
+</blockquote>
+<ul>
+<li><strong>比较关注的是停顿时间</strong> — 降低了对吞吐量的要求</li>
+</ul>
+</li>
+<li><p><strong>G1</strong>：</p>
+<blockquote>
+<p>初始标记</p>
+<p>并发标记</p>
+<p>最终标记（重新标记）</p>
+<p>筛选回收（根据用户指定的最大停顿时间，筛选动作到了最大时间后，停止回收）</p>
+</blockquote>
+<ul>
+<li>Region 区域，对堆重新进行了布局，逻辑存在Young、Old和Eden区，但物理上已经不是隔离的了</li>
+</ul>
+</li>
+</ol>
+<h4 id="JVM调优"><a href="#JVM调优" class="headerlink" title="JVM调优"></a>JVM调优</h4><ol>
+<li>GC收集器：停顿时间和吞吐量<ul>
+<li>停顿时间小：垃圾收集器进行垃圾回收Client执行相应的时间 —&gt; 很好的体验 —-&gt; 和用户交互比较多的场景，web程序<ul>
+<li>CMS</li>
+<li>G1[set pause time not strict]</li>
+</ul>
+</li>
+<li>吞吐量大：运行用户代码时间/（运行用户代码时间+垃圾收集时间）—&gt; 用户代码执行占用CPU资源的时间比较大，跑任务，运算的任务<ul>
+<li>Parallel ScanVent【并发类的收集器】</li>
+<li>Parallel Old【并行类的收集器】</li>
+</ul>
+</li>
+<li>Serial和Serial Old【串行收集，适合内存比较小，嵌入式的设备】</li>
+</ul>
+</li>
+<li>内存使用的维度 </li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/12/18/JVM%E5%AD%A6%E4%B9%A0-%E5%8D%87%E5%8D%8E%E7%AF%87/" data-id="ck4b3g5cj0002vnk7h1laau9w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JVM学习-进行篇" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/11/JVM%E5%AD%A6%E4%B9%A0-%E8%BF%9B%E8%A1%8C%E7%AF%87/" class="article-date">
@@ -156,7 +265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/11/JVM%E5%AD%A6%E4%B9%A0-%E8%BF%9B%E8%A1%8C%E7%AF%87/" data-id="ck43kv52c00010nk73ynr523q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/11/JVM%E5%AD%A6%E4%B9%A0-%E8%BF%9B%E8%A1%8C%E7%AF%87/" data-id="ck4b3g5ca0000vnk7e5nm988v" class="article-share-link">Share</a>
       
       
     </footer>
@@ -283,7 +392,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/" data-id="ck43kv52g00030nk78qea80g9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/09/JVM%E5%AD%A6%E4%B9%A0/" data-id="ck4b3g5cl0003vnk79dz08112" class="article-share-link">Share</a>
       
       
     </footer>
@@ -319,7 +428,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/09/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" data-id="ck43kv52h00040nk7arwigc54" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/09/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" data-id="ck4b3g5cl0004vnk7d8w4c3d6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -359,7 +468,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/27/Hello-World-By-Real/" data-id="ck43kv52700000nk7fdja74q8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/27/Hello-World-By-Real/" data-id="ck4b3g5ci0001vnk70jql81hh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -408,7 +517,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/27/hello-world/" data-id="ck43kv52f00020nk73ymu3wmr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/27/hello-world/" data-id="ck4b3g5cm0005vnk73elo0xem" class="article-share-link">Share</a>
       
       
     </footer>
@@ -449,6 +558,10 @@
       <ul>
         
           <li>
+            <a href="/2019/12/18/JVM%E5%AD%A6%E4%B9%A0-%E5%8D%87%E5%8D%8E%E7%AF%87/">JVM学习-升华篇</a>
+          </li>
+        
+          <li>
             <a href="/2019/12/11/JVM%E5%AD%A6%E4%B9%A0-%E8%BF%9B%E8%A1%8C%E7%AF%87/">JVM学习-进行篇</a>
           </li>
         
@@ -462,10 +575,6 @@
         
           <li>
             <a href="/2019/11/27/Hello-World-By-Real/">Hello World By Real</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/27/hello-world/">Hello World</a>
           </li>
         
       </ul>
